@@ -25,47 +25,28 @@ using namespace std;
 #define LIMIT 1000
 
 
+
 class Solution {
 public:
-    bool canConstruct(string ransomNote, string magazine) {
+    int countSegments(string s) {
+        int len = s.size();
+        int i , word = 0;
 
-        int i;
-        int alpabet[ 26 ];
-        map < char, int > mp;
-
-        for ( i = 0; i < magazine.length(); i++ ) {
-            //alpabet[ magazine[ i ] - 'a']++;
-            mp[ magazine[ i ] ]++;
+        for ( i = 0; i <= len; i++ ) {
+            if ( s[ i ] != ' ' && ( i == len - 1 || s[ i + 1 ] == ' ' )  ) word++;
         }
-
-        for ( i = 0; i < ransomNote.length(); i++ ) {
-            char ch = ransomNote[ i ];
-            if ( mp[ ch ] <= 0 ) {
-
-                return false;
-                //alpabet[ ransomNote[ i ] - 'a' ]--;
-            }
-            else {
-                //alpabet[ ransomNote[ i ] - 'a' ]--;
-              //  return false;
-                mp[ ch ]--;
-            }
-        }
-        return true;
+        return word;
     }
 };
 
 
-
 int main () {
     string rans;
-    string mega;
 
     cin >> rans;
-    cin >> mega;
 
     Solution sol;
-    bool ans = sol.canConstruct( rans, mega );
+    int ans = sol.countSegments( rans );
 
     cout << ans;
 
